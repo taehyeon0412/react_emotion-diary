@@ -78,10 +78,12 @@ function App() {
 
         <Route path="/edit" element={<Edit />} />
 
-        <Route path="/diary" element={<Diary />} />
+        <Route path="/diary/:id" element={<Diary />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+//SPA이면서 CSR방식
