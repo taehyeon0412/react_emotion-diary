@@ -25,3 +25,5 @@ function Edit() {
 }
 
 export default Edit;
+
+//폰트,레이아웃,이미지에셋,공통 컴포넌트
