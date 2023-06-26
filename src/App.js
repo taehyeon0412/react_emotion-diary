@@ -8,9 +8,9 @@ import { styled } from "styled-components";
 
 //COMPONENTS
 import MyButton from "./components/MyButton";
+import MyHeader from "./components/MyHeader";
 
 const Wrapper = styled.div`
-  margin-top: 20px;
   min-height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
@@ -31,6 +31,25 @@ function App() {
   return (
     <BrowserRouter>
       <Wrapper>
+        {/* 헤더 시작 */}
+
+        <MyHeader
+          headText={"App"}
+          leftChild={
+            <MyButton
+              text={"왼쪽 버튼"}
+              onClick={() => alert("왼쪽 버튼을 클릭")}
+            />
+          }
+          rightChild={
+            <MyButton
+              text={"오른쪽 버튼"}
+              onClick={() => alert("오른쪽 버튼을 클릭")}
+            />
+          }
+        />
+        {/* 헤더 끝 */}
+
         <MyButton
           text={`버튼`}
           onClick={() => alert("버튼클릭")}
