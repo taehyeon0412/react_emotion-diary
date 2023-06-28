@@ -1,10 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./css/App.css";
+import { styled } from "styled-components";
+import React, { useReducer, useRef } from "react";
+
+//PAGES
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
-import "./css/App.css";
-import { styled } from "styled-components";
 
 //COMPONENTS
 import MyButton from "./components/MyButton";
@@ -27,56 +30,96 @@ const Wrapper = styled.div`
   }
 `;
 
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case `INIT`: {
+      return action.data;
+    }
+    case `CREATE`: {
+      const newItem = {
+        ...action.data,
+      };
+      newState = [newItem, ...state];
+      break; // 브레이크를 걸지않으면 default까지 수행되므로 create가 수행되면 브레이크 하게함
+    }
+    case `REMOVE`: {
+      newState = state.filter((it) => it.id !== action.targetId);
+      break;
+    }
+    case `EDIT`: {
+      newState = state.map((it) =>
+        it.id === action.data.id ? { ...action.data } : it
+      );
+      break;
+    }
+
+    default:
+      return state;
+  }
+  return newState;
+};
+
+/* useState 대신 useReducer를 이용해서 여러가지 케이스를 한꺼번에 할 수있음 */
+
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
+//사용하기 위해서는 컴포넌트 전체를 Context.Provider로 감싸준다
+
 function App() {
+  const [data, dispatch] = useReducer(reducer, []);
+  const dataId = useRef(0);
+
+  //CREATE
+  const onCreate = (date, content, emotion) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        date: new Date(date).getTime(),
+        content,
+        emotion,
+      },
+    });
+    dataId.current += 1;
+  };
+
+  //REMOVE
+  const onRemove = (targetId) => {
+    dispatch({ type: "REMOVE", targetId });
+  };
+
+  //EDIT
+  const onEdit = (targetId, date, content, emotion) => {
+    dispatch({
+      type: "EDIT",
+      data: {
+        id: targetId,
+        date: new Date(date).getTime(),
+        content,
+        emotion,
+      },
+    });
+  };
+
   return (
-    <BrowserRouter>
-      <Wrapper>
-        {/* 헤더 시작 */}
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
+        <BrowserRouter>
+          <Wrapper>
+            <Routes>
+              <Route path="/" element={<Home />} />
 
-        <MyHeader
-          headText={"App"}
-          leftChild={
-            <MyButton
-              text={"왼쪽 버튼"}
-              onClick={() => alert("왼쪽 버튼을 클릭")}
-            />
-          }
-          rightChild={
-            <MyButton
-              text={"오른쪽 버튼"}
-              onClick={() => alert("오른쪽 버튼을 클릭")}
-            />
-          }
-        />
-        {/* 헤더 끝 */}
+              <Route path="/new" element={<New />} />
 
-        <MyButton
-          text={`버튼`}
-          onClick={() => alert("버튼클릭")}
-          type={`default`}
-        />
-        <MyButton
-          text={`버튼`}
-          onClick={() => alert("버튼클릭")}
-          type={`positive`}
-        />
-        <MyButton
-          text={`버튼`}
-          onClick={() => alert("버튼클릭")}
-          type={`negative`}
-        />
+              <Route path="/edit" element={<Edit />} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-
-          <Route path="/new" element={<New />} />
-
-          <Route path="/edit" element={<Edit />} />
-
-          <Route path="/diary/:id" element={<Diary />} />
-        </Routes>
-      </Wrapper>
-    </BrowserRouter>
+              <Route path="/diary/:id" element={<Diary />} />
+            </Routes>
+          </Wrapper>
+        </BrowserRouter>
+      </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider>
   );
 }
 
