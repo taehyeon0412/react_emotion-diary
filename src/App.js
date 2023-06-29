@@ -9,10 +9,6 @@ import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 
-//COMPONENTS
-import MyButton from "./components/MyButton";
-import MyHeader from "./components/MyHeader";
-
 const Wrapper = styled.div`
   min-height: 100vh;
   padding-left: 20px;
@@ -20,6 +16,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-family: "Nanum Pen Script";
 
   @media (min-width: 650px) {
     width: 640px;
@@ -66,9 +63,40 @@ export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 //사용하기 위해서는 컴포넌트 전체를 Context.Provider로 감싸준다
 
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "오늘 일기 1번",
+    date: 1688050500000,
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: "오늘 일기 2번",
+    date: 1688050600001,
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: "오늘 일기 3번",
+    date: 1688050700002,
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: "오늘 일기 4번",
+    date: 1688050400000,
+  },
+];
+
+//----------------------------------------------------------
+
 function App() {
-  const [data, dispatch] = useReducer(reducer, []);
-  const dataId = useRef(0);
+  const [data, dispatch] = useReducer(reducer, dummyData);
+  //useReducer(reducer, []);   []는 기초데이터값
+
+  const dataId = useRef(0); //Id 초기값 0
 
   //CREATE
   const onCreate = (date, content, emotion) => {
@@ -104,6 +132,7 @@ function App() {
 
   return (
     <DiaryStateContext.Provider value={data}>
+      {/* 각각의 요소에 데이터 제공 */}
       <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
         <BrowserRouter>
           <Wrapper>
