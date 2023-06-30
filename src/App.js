@@ -74,19 +74,19 @@ const dummyData = [
     id: 2,
     emotion: 2,
     content: "오늘 일기 2번",
-    date: 1688050600001,
+    date: 1688050500001,
   },
   {
     id: 3,
-    emotion: 3,
+    emotion: 4,
     content: "오늘 일기 3번",
-    date: 1688050700002,
+    date: 1688050500002,
   },
   {
     id: 4,
-    emotion: 4,
+    emotion: 5,
     content: "오늘 일기 4번",
-    date: 1688050400000,
+    date: 1688050500003,
   },
 ];
 

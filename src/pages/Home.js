@@ -63,10 +63,6 @@ function Home() {
   /* 첫번째 날짜와 마지막 날짜를 구하고 그사이에 있는 일기만 나타나게함*/
   /* diaryList,currentDate가 변화하는 순간에만 랜더링 되야되기 때문에 useEffect를 사용함 */
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <div>
       <MyHeader
