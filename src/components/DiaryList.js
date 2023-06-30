@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 //COMPONENT
 import MyButton from "./MyButton";
+import DiaryBody from "./DiaryBody";
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -20,7 +21,7 @@ const Select = styled.select`
   text-align: center;
 `;
 
-const Menu_wrapper = styled.div`
+const MenuWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
@@ -118,7 +119,7 @@ function DiaryList({ diaryList }) {
 
   return (
     <Wrapper>
-      <Menu_wrapper>
+      <MenuWrapper>
         <Left_col>
           <ControlMenu
             value={sortType}
@@ -139,10 +140,10 @@ function DiaryList({ diaryList }) {
             onClick={() => navigate(`/new`)}
           />
         </Right_col>
-      </Menu_wrapper>
+      </MenuWrapper>
 
       {changeOptionDiaryList().map((it) => (
-        <div key={it.id}>{it.content}</div>
+        <DiaryBody key={it.id} {...it} />
       ))}
     </Wrapper>
   );
