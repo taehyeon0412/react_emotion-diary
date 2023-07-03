@@ -1,10 +1,10 @@
+import { styled } from "styled-components";
+
+//COMPONENT
+import DiaryEditor from "../components/DiaryEditor";
+
 function New() {
-  return (
-    <div>
-      <h1>New</h1>
-      <p>이곳은 New페이지 입니다.</p>
-    </div>
-  );
+  return <DiaryEditor />;
 }
 
 export default New;

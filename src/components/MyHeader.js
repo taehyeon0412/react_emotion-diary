@@ -28,6 +28,8 @@ const HeaderText = styled.div`
   justify-content: center;
 `;
 
+//styled----------------------------------------------------
+
 function MyHeader({ headText, leftChild, rightChild }) {
   return (
     <Wrapper>

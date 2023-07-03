@@ -99,8 +99,6 @@ const dummyData = [
 //----------------------------------------------------------
 
 function App() {
-  console.log(new Date().getTime());
-
   const [data, dispatch] = useReducer(reducer, dummyData);
   //useReducer(reducer, []);   []는 기초데이터값
 
@@ -145,13 +143,13 @@ function App() {
         <BrowserRouter>
           <Wrapper>
             <Routes>
-              <Route path="/" element={<Home />} />
-
               <Route path="/new" element={<New />} />
 
               <Route path="/edit" element={<Edit />} />
 
               <Route path="/diary/:id" element={<Diary />} />
+
+              <Route path="/" element={<Home />} />
             </Routes>
           </Wrapper>
         </BrowserRouter>

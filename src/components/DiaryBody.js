@@ -57,6 +57,8 @@ const EditDiv = styled.div`
   min-width: 70px;
 `;
 
+//styled -------------------------------------------------------
+
 function DiaryBody({ id, emotion, content, date }) {
   const strDate = new Date(parseInt(date)).toLocaleDateString();
   const navigate = useNavigate();
