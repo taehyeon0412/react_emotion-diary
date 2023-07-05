@@ -145,7 +145,7 @@ function App() {
             <Routes>
               <Route path="/new" element={<New />} />
 
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
 
               <Route path="/diary/:id" element={<Diary />} />
 

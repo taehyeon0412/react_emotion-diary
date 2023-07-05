@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 //COMPONENT
 
@@ -99,7 +99,7 @@ const getStringDate = (date) => {
 /*new Date().toISOString()을 하면
 ex)2023-07-03T10:14:58.123Z 같이 나온다 그래서 slice를 해주어 자르면 원하는 값이 나옴   */
 
-function DiaryEditor() {
+function DiaryEditor({ isEdit, originData }) {
   const navigate = useNavigate();
   const [date, setDate] = useState(getStringDate(new Date()));
   const [emotion, setEmotion] = useState(3);
@@ -121,7 +121,7 @@ function DiaryEditor() {
   };
   // 본문 text onChange 함수
 
-  const { onCreate } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
 
   const handleSubmit = () => {
     if (content.length < 1) {
@@ -129,15 +129,30 @@ function DiaryEditor() {
       return;
     }
 
-    onCreate(date, content, emotion); //onCreate에 각각의 데이터를 보내줌
+    if (!isEdit) {
+      onCreate(date, content, emotion); //onCreate에 각각의 데이터를 보내줌
+    } else {
+      onEdit(originData.id, date, content, emotion); //onEdit에 각각의 데이터를 보내줌
+    }
+
     navigate(`/`, { replace: true }); //replace:true를 하면 페이지 뒤로가기를 눌러도 새일기쓰기 페이지로 다시넘어오지 않는다
   };
-  // 작성완료 하면 APP DiaryDispatchContext의 onCreate에 각각의 데이터를 보내주는 함수
+  // 작성완료 하면 APP DiaryDispatchContext의 onCreate,onEdit에 각각의 데이터를 보내주는 함수
+
+  useEffect(() => {
+    if (isEdit) {
+      setDate(getStringDate(new Date(parseInt(originData.date))));
+      setEmotion(originData.emotion);
+      setContent(originData.content);
+    }
+  }, [isEdit, originData]);
+  //isEdit일때만 작동하는 useEffect를 만들고
+  //Edit페이지에서 isEdit,originData props를 받아와 데이터로 넣는다
 
   return (
     <Wrapper>
       <MyHeader
-        headText={"새 일기쓰기"}
+        headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
         leftChild={
           <MyButton text={`< 뒤로가기`} onClick={() => navigate(-1)} />
         }
