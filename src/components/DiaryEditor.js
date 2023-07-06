@@ -1,6 +1,12 @@
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 //COMPONENT
 
@@ -80,9 +86,9 @@ function DiaryEditor({ isEdit, originData }) {
   };
   //날짜 input onChange 함수
 
-  const handleClickEmote = (emotion) => {
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
   // 이모션 클릭 함수
 
   const onChangeText = (e) => {

@@ -1,3 +1,4 @@
+import React from "react";
 import { styled } from "styled-components";
 
 const EmotionItemDiv = styled.div`
@@ -66,4 +67,4 @@ function EmotionItem({
 /* DiaryEditor에서 전달받은 emotion, selected을 사용하여 
 클릭된 개체만 색깔을 바꿀 수 있게 만들어줌*/
 
-export default EmotionItem;
+export default React.memo(EmotionItem);

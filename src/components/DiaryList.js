@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const Right_col = styled.div`
 
 //styled--------------------------------------------------------
 
-const ControlMenu = ({ value, onChange, optionList }) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
     <Select value={value} onChange={(e) => onChange(e.target.value)}>
       {optionList.map((it, idx) => (
@@ -53,7 +53,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
       ))}
     </Select>
   );
-};
+});
 /* onChange가 가르키는 것은 setSortType이므로 onchange가 실행되면 
 sortType의 value를 바꾸는것과 같다*/
 

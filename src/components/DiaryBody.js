@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 //COMPONENTS
 import MyButton from "./MyButton";
@@ -89,4 +90,4 @@ function DiaryBody({ id, emotion, content, date }) {
   );
 }
 
-export default DiaryBody;
+export default React.memo(DiaryBody);
