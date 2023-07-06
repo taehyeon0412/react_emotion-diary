@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./css/App.css";
 import { styled } from "styled-components";
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer } from "react";
 
 //PAGES
 import Home from "./pages/Home";
@@ -10,12 +10,13 @@ import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  height: 95vh;
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
   font-family: "Nanum Pen Script";
 
   @media (min-width: 650px) {
@@ -54,6 +55,8 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+
+  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
@@ -63,59 +66,33 @@ export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 //사용하기 위해서는 컴포넌트 전체를 Context.Provider로 감싸준다
 
-const dummyData = [
-  {
-    id: 1,
-    emotion: 1,
-    content: "오늘 일기 1번",
-    date: 1688150548505,
-  },
-  {
-    id: 2,
-    emotion: 2,
-    content: "오늘 일기 2번",
-    date: 1688150548506,
-  },
-  {
-    id: 3,
-    emotion: 3,
-    content: "오늘 일기 3번",
-    date: 1688150548507,
-  },
-  {
-    id: 4,
-    emotion: 4,
-    content: "오늘 일기 4번",
-    date: 1688150548508,
-  },
-  {
-    id: 5,
-    emotion: 5,
-    content: "오늘 일기 5번",
-    date: 1688150548509,
-  },
-];
-
 //----------------------------------------------------------
 
 function App() {
-  const [data, dispatch] = useReducer(reducer, dummyData);
+  const [data, dispatch] = useReducer(reducer, []);
   //useReducer(reducer, []);   []는 기초데이터값
 
-  const dataId = useRef(0); //Id 초기값 0
+  useEffect(() => {
+    const localData = localStorage.getItem(`diary`);
+    if (localData) {
+      const diaryList = JSON.parse(localData);
+
+      dispatch({ type: "INIT", data: diaryList });
+    }
+  }, []);
+  //localStorage에 있는값을 처음 시작 시 불러온다.
 
   //CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
       type: "CREATE",
       data: {
-        id: dataId.current,
+        id: new Date().getTime() + Math.random(), //id가 안겹치게 하기 위해 현재의 밀리초 시간에서 랜덤한 값을 더해줌
         date: new Date(date).getTime(),
         content,
         emotion,
       },
     });
-    dataId.current += 1;
   };
 
   //REMOVE
