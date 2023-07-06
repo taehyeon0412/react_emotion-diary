@@ -9,6 +9,10 @@ import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "../App";
 
+//Util
+import { getStringDate } from "../util/date";
+import { emotionList } from "./../util/emotion";
+
 const Wrapper = styled.div``;
 
 const SectionWrapper = styled.div``;
@@ -63,41 +67,6 @@ const ControlBox = styled.div`
 `;
 
 //styled ---------------------------------------------------------------
-
-const emotionList = [
-  {
-    emotion_id: 1,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion1.png`,
-    emotion_name: "완전 좋음",
-  },
-  {
-    emotion_id: 2,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion2.png`,
-    emotion_name: "좋음",
-  },
-  {
-    emotion_id: 3,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion3.png`,
-    emotion_name: "보통",
-  },
-  {
-    emotion_id: 4,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion4.png`,
-    emotion_name: "나쁨",
-  },
-  {
-    emotion_id: 5,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion5.png`,
-    emotion_name: "매우 나쁨",
-  },
-];
-//감정 리스트 배열
-
-const getStringDate = (date) => {
-  return date.toISOString().slice(0, 10);
-};
-/*new Date().toISOString()을 하면
-ex)2023-07-03T10:14:58.123Z 같이 나온다 그래서 slice를 해주어 자르면 원하는 값이 나옴   */
 
 function DiaryEditor({ isEdit, originData }) {
   const navigate = useNavigate();
