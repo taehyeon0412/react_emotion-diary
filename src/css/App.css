@@ -7,6 +7,8 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  overflow: hidden;
+
   font-family: "Nanum Pen Script", cursive;
   font-family: "Yeon Sung", cursive;
 }
@@ -14,4 +16,5 @@ body {
 #root {
   background-color: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 30px;
 }

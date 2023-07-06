@@ -16,8 +16,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
   font-family: "Nanum Pen Script";
+
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (min-width: 650px) {
     width: 640px;
