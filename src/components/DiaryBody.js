@@ -9,15 +9,19 @@ const Wrapper = styled.div`
   display: flex;
   padding-top: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 1px solid rgba(178, 190, 195, 1);
   justify-content: space-between;
+  background-color: rgba(178, 190, 195, 0.1);
+  border-radius: 20px;
+  margin-bottom: 10px;
 `;
 
 const EmotionDiv = styled.div`
+  margin-left: 15px;
   cursor: pointer;
   min-width: 120px;
   height: 80px;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   background-color: ${({ emotion }) => {
@@ -36,6 +40,10 @@ const EmotionDiv = styled.div`
   img {
     width: 50%;
   }
+
+  @media (max-width: 500px) {
+    min-width: 80px;
+  }
 `;
 
 const TextDiv = styled.div`
@@ -52,10 +60,15 @@ const TextDivDate = styled.div`
 
 const TextDivText = styled.div`
   font-size: 18px;
+  padding-right: 10px;
 `;
 
 const EditDiv = styled.div`
   min-width: 70px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 //styled -------------------------------------------------------
@@ -82,7 +95,9 @@ function DiaryBody({ id, emotion, content, date }) {
 
       <TextDiv onClick={goDetail}>
         <TextDivDate>{strDate}</TextDivDate>
-        <TextDivText>{content.slice(0, 25)}</TextDivText>
+        <TextDivText>
+          {content.length >= 25 ? content.slice(0, 25) + "..." : content}
+        </TextDivText>
       </TextDiv>
 
       <EditDiv>{<MyButton text={"수정하기"} onClick={goEdit} />}</EditDiv>

@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../App";
+import { styled } from "styled-components";
 
 //COMPONENTS
 import MyHeader from "../components/MyHeader";
 import MyButton from "../components/MyButton";
 import DiaryList from "../components/DiaryList";
+
+const Wrapper = styled.div``;
 
 function Home() {
   const diaryList = useContext(DiaryStateContext);
@@ -67,14 +70,14 @@ function Home() {
   /* diaryList,currentDate가 변화하는 순간에만 랜더링 되야되기 때문에 useEffect를 사용함 */
 
   return (
-    <div>
+    <Wrapper>
       <MyHeader
         headText={headText}
         leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
         rightChild={<MyButton text={">"} onClick={increaseMonth} />}
       />
       <DiaryList diaryList={data} />
-    </div>
+    </Wrapper>
   );
 }
 

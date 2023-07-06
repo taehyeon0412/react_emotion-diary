@@ -16,7 +16,7 @@ import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "../App";
 
 //Util
-import { getStringDate } from "../util/date";
+import { getStringDate, getStringDateToday } from "../util/date";
 import { emotionList } from "./../util/emotion";
 
 const Wrapper = styled.div``;
@@ -76,7 +76,7 @@ const ControlBox = styled.div`
 
 function DiaryEditor({ isEdit, originData }) {
   const navigate = useNavigate();
-  const [date, setDate] = useState(getStringDate(new Date()));
+  const [date, setDate] = useState(getStringDateToday);
   const [emotion, setEmotion] = useState(3);
   const contentRef = useRef();
   const [content, setContent] = useState("");
