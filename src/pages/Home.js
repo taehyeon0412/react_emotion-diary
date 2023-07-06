@@ -51,8 +51,11 @@ function Home() {
       const lastDay = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth() + 1,
-        0
-      ).getTime();
+        0,
+        23,
+        59,
+        59
+      ).getTime(); //마지막 날짜에 시,분,초까지 입력해야 마지막날짜에 오류가 없음
 
       setData(
         diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay)
