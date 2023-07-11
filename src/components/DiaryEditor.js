@@ -70,6 +70,7 @@ const ControlBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 //styled ---------------------------------------------------------------
@@ -154,7 +155,12 @@ function DiaryEditor({ isEdit, originData }) {
         <Section>
           <h4>오늘은 언제인가요?</h4>
           <DateDiv>
-            <DateInput type="date" value={date} onChange={onChangeDate} />
+            <DateInput
+              type="date"
+              value={date}
+              onChange={onChangeDate}
+              max={getStringDateToday}
+            />
           </DateDiv>
         </Section>
         {/* 날짜 섹션 */}

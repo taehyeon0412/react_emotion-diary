@@ -19,7 +19,7 @@ function Home() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const headText = `${currentDate.getFullYear()}년 ${
     currentDate.getMonth() + 1
-  }월`;
+  }월의 기록`;
   //js에서는 1월이 0으로 시작해서 +1을 해줘야됨
 
   useEffect(() => {
