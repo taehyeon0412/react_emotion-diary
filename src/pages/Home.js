@@ -22,6 +22,11 @@ function Home() {
   }월`;
   //js에서는 1월이 0으로 시작해서 +1을 해줘야됨
 
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerText = `나의 일기장`;
+  }, []);
+
   const increaseMonth = () => {
     setCurrentDate(
       new Date(
