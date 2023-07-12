@@ -6,6 +6,7 @@ import { styled } from "styled-components";
 //UTIL
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
+import { weatherList } from "../util/weather";
 
 //COMPONENTS
 import MyHeader from "../components/MyHeader";
@@ -30,13 +31,15 @@ const Section = styled.section`
   }
 `;
 
-const ImgWrapper = styled.div`
+const EmotionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+
   background-color: ${({ emotion }) => {
     if (emotion === 1) {
       return `#64c964`;
@@ -54,6 +57,25 @@ const ImgWrapper = styled.div`
   span {
     font-size: 25px;
     color: white;
+  }
+`;
+
+const WeatherWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10%;
+
+  img {
+    width: 70px;
+    height: 50px;
+  }
+
+  h4 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    margin-top: 30px;
   }
 `;
 
@@ -107,6 +129,9 @@ function Diary() {
     const emotionData = emotionList.find(
       (it) => parseInt(it.emotion_id) === parseInt(data.emotion)
     ); //emotion id 같은지 보기
+    const weatherData = weatherList.find(
+      (it) => parseInt(it.weather_id) === parseInt(data.weather)
+    ); //weather id 같은지 보기
 
     return (
       <DiaryPage>
@@ -126,15 +151,18 @@ function Diary() {
         <Article>
           <Section>
             <h4>오늘의 감정</h4>
-            <ImgWrapper emotion={data.emotion}>
+            <EmotionWrapper emotion={data.emotion}>
               <img src={emotionData.emotion_img} />
               <span>{emotionData.emotion_name}</span>
-            </ImgWrapper>
+            </EmotionWrapper>
           </Section>
           {/* 감정박스 섹션 */}
 
           <Section>
-            <h4>오늘의 일기</h4>
+            <WeatherWrapper>
+              <h4>오늘의 일기</h4>
+              <img src={weatherData.weather_img} />
+            </WeatherWrapper>
 
             <ContentWrapper>
               <p>{data.content}</p>

@@ -141,6 +141,7 @@ function DiaryEditor({ isEdit, originData }) {
     if (isEdit) {
       setDate(getStringDate(new Date(parseInt(originData.date))));
       setEmotion(originData.emotion);
+      setWeather(originData.weather);
       setContent(originData.content);
     }
   }, [isEdit, originData]);
