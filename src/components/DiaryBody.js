@@ -63,13 +63,13 @@ const TextDivText = styled.div`
   padding-right: 10px;
 `;
 
-const EditDiv = styled.div`
+/* const EditDiv = styled.div`
   min-width: 70px;
   margin-right: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`; */
 
 //styled -------------------------------------------------------
 
@@ -100,7 +100,7 @@ function DiaryBody({ id, emotion, content, date }) {
         </TextDivText>
       </TextDiv>
 
-      <EditDiv>{<MyButton text={"수정하기"} onClick={goEdit} />}</EditDiv>
+      {/* <EditDiv>{<MyButton text={"수정하기"} onClick={goEdit} />}</EditDiv> */}
     </Wrapper>
   );
 }

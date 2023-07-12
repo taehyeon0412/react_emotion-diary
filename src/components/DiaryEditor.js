@@ -15,6 +15,7 @@ import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 import WeatherItem from "./WeatherItem";
 import { DiaryDispatchContext } from "../App";
+import DiaryModal from "./DiaryModal";
 
 //Util
 import { getStringDate, getStringDateToday } from "../util/date";
@@ -78,7 +79,7 @@ const ControlBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 `;
 
 //styled ---------------------------------------------------------------
@@ -111,7 +112,7 @@ function DiaryEditor({ isEdit, originData }) {
   };
   // 본문 text onChange 함수
 
-  const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
 
   const handleSubmit = () => {
     if (content.length < 1) {
@@ -128,14 +129,6 @@ function DiaryEditor({ isEdit, originData }) {
     navigate(`/`, { replace: true }); //replace:true를 하면 페이지 뒤로가기를 눌러도 새일기쓰기 페이지로 다시넘어오지 않는다
   };
   // 작성완료 하면 APP DiaryDispatchContext의 onCreate,onEdit에 각각의 데이터를 보내주는 함수
-
-  const handleRemove = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      onRemove(originData.id);
-      navigate("/", { replace: true });
-    }
-  };
-  //삭제 함수
 
   useEffect(() => {
     if (isEdit) {
@@ -155,15 +148,7 @@ function DiaryEditor({ isEdit, originData }) {
         leftChild={
           <MyButton text={`< 뒤로가기`} onClick={() => navigate(-1)} />
         }
-        rightChild={
-          isEdit && (
-            <MyButton
-              text={"삭제하기"}
-              type={"negative"}
-              onClick={handleRemove}
-            />
-          )
-        }
+        rightChild={isEdit && <DiaryModal originData={originData} />}
       />
 
       <SectionWrapper>
