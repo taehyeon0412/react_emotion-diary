@@ -13,11 +13,13 @@ import React, {
 import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
+import WeatherItem from "./WeatherItem";
 import { DiaryDispatchContext } from "../App";
 
 //Util
 import { getStringDate, getStringDateToday } from "../util/date";
 import { emotionList } from "./../util/emotion";
+import { weatherList } from "./../util/weather";
 
 const Wrapper = styled.div``;
 
@@ -52,6 +54,12 @@ const EmotionWrapper = styled.div`
   gap: 2%;
 `;
 
+const WeatherWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 2%;
+`;
+
 const TextArea = styled.textarea`
   font-family: "Nanum Pen Script";
   font-size: 20px;
@@ -79,6 +87,7 @@ function DiaryEditor({ isEdit, originData }) {
   const navigate = useNavigate();
   const [date, setDate] = useState(getStringDateToday);
   const [emotion, setEmotion] = useState(3);
+  const [weather, setWeather] = useState(1);
   const contentRef = useRef();
   const [content, setContent] = useState("");
 
@@ -91,6 +100,11 @@ function DiaryEditor({ isEdit, originData }) {
     setEmotion(emotion);
   }, []);
   // 이모션 클릭 함수
+
+  const handleClickWeather = useCallback((weather) => {
+    setWeather(weather);
+  }, []);
+  //날씨 클릭 함수
 
   const onChangeText = (e) => {
     setContent(e.target.value);
@@ -106,9 +120,9 @@ function DiaryEditor({ isEdit, originData }) {
     }
 
     if (!isEdit) {
-      onCreate(date, content, emotion); //onCreate에 각각의 데이터를 보내줌
+      onCreate(date, content, emotion, weather); //onCreate에 각각의 데이터를 보내줌
     } else {
-      onEdit(originData.id, date, content, emotion); //onEdit에 각각의 데이터를 보내줌
+      onEdit(originData.id, date, content, emotion, weather); //onEdit에 각각의 데이터를 보내줌
     }
 
     navigate(`/`, { replace: true }); //replace:true를 하면 페이지 뒤로가기를 눌러도 새일기쓰기 페이지로 다시넘어오지 않는다
@@ -180,6 +194,22 @@ function DiaryEditor({ isEdit, originData }) {
           </EmotionWrapper>
         </Section>
         {/* 감정 섹션 */}
+
+        <Section>
+          <h4>오늘의 날씨</h4>
+          <WeatherWrapper>
+            {weatherList.map((it) => (
+              <WeatherItem
+                key={it.weather_id}
+                {...it}
+                onClick={handleClickWeather}
+                weather={weather}
+                selected={it.weather_id === weather}
+              />
+            ))}
+          </WeatherWrapper>
+        </Section>
+        {/* 날씨 섹션 */}
 
         <Section>
           <h4>오늘의 일기</h4>

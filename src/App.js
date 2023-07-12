@@ -88,7 +88,7 @@ function App() {
   //localStorage에 있는값을 처음 시작 시 불러온다.
 
   //CREATE
-  const onCreate = (date, content, emotion) => {
+  const onCreate = (date, content, emotion, weather) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -96,6 +96,7 @@ function App() {
         date: new Date(date).getTime(),
         content,
         emotion,
+        weather,
       },
     });
   };
@@ -106,7 +107,7 @@ function App() {
   };
 
   //EDIT
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = (targetId, date, content, emotion, weather) => {
     dispatch({
       type: "EDIT",
       data: {
@@ -114,6 +115,7 @@ function App() {
         date: new Date(date).getTime(),
         content,
         emotion,
+        weather,
       },
     });
   };
