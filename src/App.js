@@ -4,10 +4,11 @@ import { styled } from "styled-components";
 import React, { useEffect, useReducer } from "react";
 
 //PAGES
-import Home from "./pages/Home";
+import DiaryHome from "./pages/DiaryHome";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
+import Calendar from "./pages/Calendar";
 
 const Wrapper = styled.div`
   height: 95vh;
@@ -133,7 +134,9 @@ function App() {
 
               <Route path="/diary/:id" element={<Diary />} />
 
-              <Route path="/" element={<Home />} />
+              <Route path="/calendar" element={<Calendar />} />
+
+              <Route path="/" element={<DiaryHome />} />
             </Routes>
           </Wrapper>
         </BrowserRouter>

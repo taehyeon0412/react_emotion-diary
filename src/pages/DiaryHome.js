@@ -40,7 +40,7 @@ const NewButton = styled.button`
 
 //styled-------------------------------------------------------
 
-function Home() {
+function DiaryHome() {
   const navigate = useNavigate();
   const diaryList = useContext(DiaryStateContext);
   //diaryList의 데이터값은 APP의 DiaryStateContext에서 전달받는다.
@@ -126,4 +126,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default DiaryHome;
