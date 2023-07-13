@@ -82,10 +82,10 @@ function DiaryBody({ id, emotion, content, date }) {
   };
   //일기 상세페이지 연결
 
-  const goEdit = () => {
+  /* const goEdit = () => {
     navigate(`/edit/${id}`);
   };
-  //일기 Edit페이지 연결
+  //일기 Edit페이지 연결 */
 
   return (
     <Wrapper>

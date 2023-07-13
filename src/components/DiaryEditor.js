@@ -27,12 +27,16 @@ const Wrapper = styled.div``;
 const SectionWrapper = styled.div``;
 
 const Section = styled.section`
-  margin-top: 40px;
+  margin-top: 25px;
 
   h4 {
     font-size: 23px;
     margin-bottom: 20px;
     font-weight: 700;
+  }
+
+  &:first-child {
+    margin-top: 20px;
   }
 `;
 

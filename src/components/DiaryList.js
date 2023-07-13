@@ -26,6 +26,7 @@ const MenuWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 30px;
   gap: 10px;
+  height: 40px;
 `;
 
 const Left_col = styled.div`
@@ -33,13 +34,13 @@ const Left_col = styled.div`
   gap: 10px;
 `;
 
-const Right_col = styled.div`
+/* const Right_col = styled.div`
   flex-grow: 1; //남은 자리 모두 차지
 
   button {
     width: 100%;
   }
-`;
+`; */
 
 //styled--------------------------------------------------------
 
@@ -80,7 +81,7 @@ const filterOptionList = [
 //감정 필터 옵션
 
 function DiaryList({ diaryList }) {
-  const navigate = useNavigate();
+  /* const navigate = useNavigate(); */
   const [sortType, setSortType] = useState(`latest`); //정렬
   const [filter, setFilter] = useState(`all`); //감정필터
 
@@ -133,13 +134,13 @@ function DiaryList({ diaryList }) {
           />
         </Left_col>
 
-        <Right_col>
+        {/* <Right_col>
           <MyButton
             type={`positive`}
             text={`새 일기쓰기`}
             onClick={() => navigate(`/new`)}
           />
-        </Right_col>
+        </Right_col> */}
       </MenuWrapper>
 
       {changeOptionDiaryList().map((it) => (

@@ -8,8 +8,8 @@ const EmotionItemDiv = styled.div`
   justify-content: center;
   cursor: pointer;
   border-radius: 5px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
   background-color: ${({ emotion, selected }) => {
     if (emotion === 1 && selected === true) {

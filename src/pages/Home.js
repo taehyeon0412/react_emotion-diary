@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../App";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 //COMPONENTS
 import MyHeader from "../components/MyHeader";
@@ -9,7 +10,38 @@ import DiaryList from "../components/DiaryList";
 
 const Wrapper = styled.div``;
 
+const NewButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(189, 195, 199, 1);
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 3px 20px 0px;
+  transition-duration: 0.2s;
+
+  &:active {
+    margin-left: 3px;
+    margin-top: 3px;
+    box-shadow: none;
+  }
+
+  i {
+    font-size: 40px;
+    color: rgba(189, 195, 199, 1);
+  }
+`;
+
+//styled-------------------------------------------------------
+
 function Home() {
+  const navigate = useNavigate();
   const diaryList = useContext(DiaryStateContext);
   //diaryList의 데이터값은 APP의 DiaryStateContext에서 전달받는다.
 
@@ -82,6 +114,14 @@ function Home() {
         rightChild={<MyButton text={">"} onClick={increaseMonth} />}
       />
       <DiaryList diaryList={data} />
+
+      <NewButton
+        onClick={() => {
+          navigate("/New");
+        }}
+      >
+        <i class="fa-duotone fa-plus fa-lg"></i>
+      </NewButton>
     </Wrapper>
   );
 }
