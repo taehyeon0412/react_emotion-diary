@@ -10,13 +10,46 @@ import {
 } from "date-fns";
 import { styled } from "styled-components";
 
-const CalendarHeader = styled.div``;
+const CalendarHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(182, 113, 91);
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 20px;
+`;
 
-const CalendarCell = styled.div``;
+const CalendarCell = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
-const CalendarCellText = styled.span``;
+  &:hover {
+    cursor: pointer;
+  }
 
-const Row = styled.div``;
+  &.disabled {
+    color: #dcdad9;
+  }
+
+  &.selected {
+    background-color: #efdbd4;
+    color: #c0392b;
+  }
+`;
+
+const CalendarCellText = styled.span`
+  font-size: 20px;
+  font-weight: 600;
+`;
+
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+`;
 
 const CalendarBody = styled.div``;
 
@@ -47,8 +80,8 @@ export const RenderCells = ({ currentMonth, selectedDate }) => {
   /* console.log(isSameMonth(day, monthStart)); */ //day가 monthStart 날짜와 같은 달에 속하는지 여부 조건부로 렌더링 적용
   /* console.log(isSameDay(day, selectedDate)); */ //day가 selectedDate와 동일한지 확인. day와 selectedDate의 일, 월, 연도가 같으면 true를 반환
 
-  const sameMonth = isSameMonth(day, monthStart).toString();
-  const sameDay = isSameDay(day, selectedDate).toString();
+  const SameMonth = isSameMonth(day, monthStart).toString();
+  const SameDay = isSameDay(day, selectedDate).toString();
 
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
@@ -56,9 +89,16 @@ export const RenderCells = ({ currentMonth, selectedDate }) => {
 
       days.push(
         <CalendarCell
-          /* samemonth={sameMonth}
-          sameday={sameDay} */
           key={Math.random()}
+          className={`${
+            !isSameMonth(day, monthStart)
+              ? "disabled"
+              : isSameDay(day, selectedDate)
+              ? "selected"
+              : format(currentMonth, "M") !== format(day, "M")
+              ? "not-valid"
+              : "valid"
+          }`}
         >
           <CalendarCellText>{formattedDate}</CalendarCellText>
         </CalendarCell>
