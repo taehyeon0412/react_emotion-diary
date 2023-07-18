@@ -150,7 +150,10 @@ function DiaryEditor({ isEdit, originData }) {
       <MyHeader
         headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
         leftChild={
-          <MyButton text={`< 뒤로가기`} onClick={() => navigate(-1)} />
+          <MyButton
+            text={`< 뒤로가기`}
+            onClick={() => navigate("/DiaryHome")}
+          />
         }
         rightChild={isEdit && <DiaryModal originData={originData} />}
       />

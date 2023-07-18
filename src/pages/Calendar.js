@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { addMonths, format } from "date-fns";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 //COMPONENT
 import { RenderCells, RenderHeader } from "../components/CalendarItem";
@@ -163,4 +163,4 @@ function Calendar() {
   );
 }
 
-export default Calendar;
+export default React.memo(Calendar);

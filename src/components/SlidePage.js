@@ -2,14 +2,13 @@ import { styled } from "styled-components";
 
 //Swiper
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 import Calendar from "./../pages/Calendar";
 import DiaryHome from "./../pages/DiaryHome";
 
@@ -19,18 +18,23 @@ const StyledSwiper = styled(Swiper)`
   &:hover {
     cursor: pointer;
   }
+
+  &.swiper-wrapper {
+    transition-timing-function: linear;
+  }
 `;
 
 export default () => {
   return (
     <StyledSwiper
       // install Swiper modules
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      modules={[Navigation, Pagination]}
       spaceBetween={50}
       slidesPerView={1}
       navigation
-      pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
+      pagination={{ clickable: false }}
+      observeParents={true}
+      observer={true}
     >
       <SwiperSlide>
         <Calendar />

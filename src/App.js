@@ -4,6 +4,8 @@ import { styled } from "styled-components";
 import React, { useEffect, useReducer } from "react";
 
 //PAGES
+import DiaryHome from "./pages/DiaryHome";
+import Calendar from "./pages/Calendar";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
@@ -134,6 +136,10 @@ function App() {
               <Route path="/edit/:id" element={<Edit />} />
 
               <Route path="/diary/:id" element={<Diary />} />
+
+              <Route path="/DiaryHome" element={<DiaryHome />} />
+
+              <Route path="/Calendar" element={<Calendar />} />
 
               <Route path="/" element={<Home />} />
             </Routes>

@@ -81,17 +81,16 @@ export const RenderCells = ({ currentMonth, selectedDate }) => {
 
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
+      const isSameMonthDay = isSameMonth(day, monthStart);
+      const isSelectedDay = isSameDay(day, selectedDate);
+      const key = day.toISOString();
       formattedDate = format(day, "d");
 
       days.push(
         <CalendarCell
-          key={day.toISOString()}
+          key={key}
           className={`${
-            !isSameMonth(day, monthStart)
-              ? "disabled"
-              : isSameDay(day, selectedDate)
-              ? "selected"
-              : "valid"
+            !isSameMonthDay ? "disabled" : isSelectedDay ? "selected" : "valid"
           }`}
         >
           <CalendarCellText>{formattedDate}</CalendarCellText>
