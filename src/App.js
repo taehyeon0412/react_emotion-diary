@@ -4,11 +4,10 @@ import { styled } from "styled-components";
 import React, { useEffect, useReducer } from "react";
 
 //PAGES
-import DiaryHome from "./pages/DiaryHome";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
-import Calendar from "./pages/Calendar";
+import Home from "./pages/Home";
 
 const Wrapper = styled.div`
   height: 95vh;
@@ -33,6 +32,8 @@ const Wrapper = styled.div`
     width: 90vw;
   }
 `;
+
+//styled -----------------------------------------------------------
 
 const reducer = (state, action) => {
   let newState = [];
@@ -134,9 +135,7 @@ function App() {
 
               <Route path="/diary/:id" element={<Diary />} />
 
-              <Route path="/calendar" element={<Calendar />} />
-
-              <Route path="/" element={<DiaryHome />} />
+              <Route path="/" element={<Home />} />
             </Routes>
           </Wrapper>
         </BrowserRouter>
@@ -146,5 +145,3 @@ function App() {
 }
 
 export default App;
-
-//SPA이면서 CSR방식

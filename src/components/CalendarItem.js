@@ -8,6 +8,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
+import { useMemo } from "react";
 import { styled } from "styled-components";
 
 const CalendarHeader = styled.div`
@@ -56,19 +57,20 @@ const CalendarBody = styled.div``;
 //styled -----------------------------------------------------
 
 export const RenderHeader = ({ currentMonth }) => {
-  return (
-    <CalendarHeader>
-      {currentMonth.toLocaleString("en-US", { month: "long" })}
-    </CalendarHeader>
+  const monthString = useMemo(
+    () => currentMonth.toLocaleString("en-US", { month: "long" }),
+    [currentMonth]
   );
+
+  return <CalendarHeader>{monthString}</CalendarHeader>;
 };
 //달의 이름 헤더
 
 export const RenderCells = ({ currentMonth, selectedDate }) => {
-  const monthStart = startOfMonth(currentMonth);
-  const monthEnd = endOfMonth(monthStart);
-  const startDate = startOfWeek(monthStart);
-  const endDate = endOfWeek(monthEnd);
+  const monthStart = useMemo(() => startOfMonth(currentMonth), [currentMonth]);
+  const monthEnd = useMemo(() => endOfMonth(monthStart), [monthStart]);
+  const startDate = useMemo(() => startOfWeek(monthStart), [monthStart]);
+  const endDate = useMemo(() => endOfWeek(monthEnd), [monthEnd]);
 
   const rows = [];
   let days = [];
@@ -77,26 +79,18 @@ export const RenderCells = ({ currentMonth, selectedDate }) => {
 
   /* while 반복문은  day가 endDate보다 커지면 종료된다. */
 
-  /* console.log(isSameMonth(day, monthStart)); */ //day가 monthStart 날짜와 같은 달에 속하는지 여부 조건부로 렌더링 적용
-  /* console.log(isSameDay(day, selectedDate)); */ //day가 selectedDate와 동일한지 확인. day와 selectedDate의 일, 월, 연도가 같으면 true를 반환
-
-  const SameMonth = isSameMonth(day, monthStart).toString();
-  const SameDay = isSameDay(day, selectedDate).toString();
-
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
       formattedDate = format(day, "d");
 
       days.push(
         <CalendarCell
-          key={Math.random()}
+          key={day.toISOString()}
           className={`${
             !isSameMonth(day, monthStart)
               ? "disabled"
               : isSameDay(day, selectedDate)
               ? "selected"
-              : format(currentMonth, "M") !== format(day, "M")
-              ? "not-valid"
               : "valid"
           }`}
         >

@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 150px auto;
   overflow: hidden;
-
   flex-direction: column;
   height: 100vh;
   margin-bottom: 10px;
