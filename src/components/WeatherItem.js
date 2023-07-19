@@ -33,7 +33,8 @@ const WeatherItemDiv = styled.div`
   }};
 
   img {
-    width: 100%;
+    width: 80%;
+    height: 100%;
     /*  margin-bottom: 10px; */
   }
 
@@ -49,19 +50,26 @@ const WeatherItemDiv = styled.div`
   }
 `;
 
-function WeatherItem({ weather_id, weather_img, onClick, weather, selected }) {
+const WeatherItem = ({
+  weather_id,
+  weather_img,
+  onClick,
+  weather,
+  selected,
+}) => {
   return (
     <WeatherItemDiv
       onClick={() => onClick(weather_id)}
       weather={weather}
       selected={selected}
     >
-      <img src={weather_img} />
+      <img src={weather_img} alt="Weather Icon" />
     </WeatherItemDiv>
   );
-}
+};
+
+export default React.memo(WeatherItem);
+
 //onClick 이벤트가 발생하면 weather_id를 DiaryEditor로 전달한다
 /* DiaryEditor에서 전달받은 weather, selected을 사용하여 
 클릭된 개체만 색깔을 바꿀 수 있게 만들어줌*/
-
-export default React.memo(WeatherItem);

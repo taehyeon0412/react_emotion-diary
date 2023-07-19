@@ -36,7 +36,7 @@ function Edit() {
         navigate("/", { replace: true });
       }
     }
-  }, [diaryList, id]);
+  }, [diaryList, id, navigate]);
   //diaryList에서 현재 수정하는 데이터를 꺼내옴
   /* targetDiary가 있을경우 setOriginData에 넣어주고
   targetDiary가 없을경우 "/"으로 이동 뒤로가기시 페이지 이동못하게 replace해줌 */

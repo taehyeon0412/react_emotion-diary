@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { addMonths, format } from "date-fns";
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, lazy, useEffect, useRef } from "react";
 
 //COMPONENT
 import { RenderCells, RenderHeader } from "../components/CalendarItem";
@@ -104,13 +104,13 @@ function Calendar() {
 
   //달력body 함수
   for (let i = 0; i < 12; i++) {
+    const isCurrentMonth = currentMonth.getMonth() === selectedDate.getMonth();
+
     month.push(
       <CalendarItem
-        key={Math.random()}
+        key={i}
         ref={
-          format(currentMonth, "MM") === format(selectedDate, "MM")
-            ? monthRef
-            : null // 오늘날짜가 속해있는 달에 포커스가 잡히게 조건문으로 ref를 사용함
+          isCurrentMonth ? monthRef : null // 오늘날짜가 속해있는 달에 포커스가 잡히게 조건문으로 ref를 사용함
         }
       >
         <RenderHeader currentMonth={currentMonth} />

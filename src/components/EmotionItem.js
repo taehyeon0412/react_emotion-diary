@@ -29,6 +29,7 @@ const EmotionItemDiv = styled.div`
 
   img {
     width: 50%;
+    height: 100%;
     margin-bottom: 10px;
   }
 
@@ -58,7 +59,7 @@ function EmotionItem({
       emotion={emotion}
       selected={selected}
     >
-      <img src={emotion_img} />
+      <img src={emotion_img} alt="emotion" />
       <span>{emotion_name}</span>
     </EmotionItemDiv>
   );

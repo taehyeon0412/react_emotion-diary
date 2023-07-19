@@ -96,9 +96,9 @@ function DiaryEditor({ isEdit, originData }) {
   const contentRef = useRef();
   const [content, setContent] = useState("");
 
-  const onChangeDate = (e) => {
+  const onChangeDate = useCallback((e) => {
     setDate(e.target.value);
-  };
+  }, []);
   //날짜 input onChange 함수
 
   const handleClickEmote = useCallback((emotion) => {
@@ -111,9 +111,9 @@ function DiaryEditor({ isEdit, originData }) {
   }, []);
   //날씨 클릭 함수
 
-  const onChangeText = (e) => {
+  const onChangeText = useCallback((e) => {
     setContent(e.target.value);
-  };
+  }, []);
   // 본문 text onChange 함수
 
   const { onCreate, onEdit } = useContext(DiaryDispatchContext);
@@ -150,10 +150,7 @@ function DiaryEditor({ isEdit, originData }) {
       <MyHeader
         headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
         leftChild={
-          <MyButton
-            text={`< 뒤로가기`}
-            onClick={() => navigate("/DiaryHome")}
-          />
+          <MyButton text={`< 뒤로가기`} onClick={() => navigate(-1)} />
         }
         rightChild={isEdit && <DiaryModal originData={originData} />}
       />
@@ -231,4 +228,4 @@ function DiaryEditor({ isEdit, originData }) {
   );
 }
 
-export default DiaryEditor;
+export default React.memo(DiaryEditor);

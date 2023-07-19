@@ -98,6 +98,7 @@ export const RenderCells = ({ currentMonth, selectedDate }) => {
       );
 
       day = addDays(day, 1);
+      console.log("렌더링됨");
     }
 
     rows.push(<Row key={Math.random()}>{days}</Row>);
