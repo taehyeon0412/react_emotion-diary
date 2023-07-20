@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   grid-template-rows: 150px auto;
   overflow: hidden;
   flex-direction: column;
-  height: 100vh;
+  height: 90vh;
   margin-bottom: 10px;
   margin-top: 10px;
   border-radius: 20px;
@@ -79,7 +79,7 @@ const Weekday = styled.div`
 
 const Body = styled.div`
   margin-top: 130px;
-  overflow-y: auto;
+  overflow-y: scroll;
   height: 75vh;
 
   -ms-overflow-style: none; // IE에서 스크롤바 감춤
