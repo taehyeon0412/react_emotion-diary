@@ -15,9 +15,6 @@ import DiaryHome from "./../pages/DiaryHome";
 const StyledSwiper = styled(Swiper)`
   width: 100%;
   height: 100%;
-  &:hover {
-    cursor: pointer;
-  }
 
   &.swiper-wrapper {
     transition-timing-function: linear;
