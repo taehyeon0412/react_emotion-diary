@@ -5,11 +5,11 @@ import React, { useEffect, useReducer } from "react";
 
 //PAGES
 import DiaryHome from "./pages/DiaryHome";
-import Calendar from "./pages/Calendar";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 import Home from "./pages/Home";
+import HomeCalendar from "./pages/HomeCalendar";
 
 const Wrapper = styled.div`
   height: 95vh;
@@ -139,7 +139,7 @@ function App() {
 
               <Route path="/DiaryHome" element={<DiaryHome />} />
 
-              <Route path="/Calendar" element={<Calendar />} />
+              <Route path="/Calendar" element={<HomeCalendar />} />
 
               <Route path="/" element={<Home />} />
             </Routes>

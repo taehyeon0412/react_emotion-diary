@@ -2,14 +2,13 @@ import { styled } from "styled-components";
 
 //Swiper
 // import Swiper core and required modules
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Calendar from "./../pages/Calendar";
+import HomeCalendar from "./../pages/HomeCalendar";
 import DiaryHome from "./../pages/DiaryHome";
 
 const StyledSwiper = styled(Swiper)`
@@ -25,16 +24,15 @@ export default () => {
   return (
     <StyledSwiper
       // install Swiper modules
-      modules={[Navigation, Pagination]}
+      modules={Pagination}
       spaceBetween={50}
       slidesPerView={1}
-      navigation
       pagination={{ clickable: false }}
       observeParents={true}
       observer={true}
     >
       <SwiperSlide>
-        <Calendar />
+        <HomeCalendar />
       </SwiperSlide>
 
       <SwiperSlide>

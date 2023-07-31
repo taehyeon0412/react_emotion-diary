@@ -10,7 +10,7 @@ import DiaryList from "../components/DiaryList";
 
 const Wrapper = styled.div``;
 
-const NewButton = styled.button`
+export const NewButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

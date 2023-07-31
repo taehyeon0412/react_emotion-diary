@@ -26,6 +26,7 @@ const HeaderText = styled.div`
   width: 50%;
   font-size: 25px;
   justify-content: center;
+  font-weight: 700;
 `;
 
 //styled----------------------------------------------------
