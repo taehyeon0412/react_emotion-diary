@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React, {
   useCallback,
   useContext,
@@ -96,6 +96,23 @@ function DiaryEditor({ isEdit, originData }) {
   const contentRef = useRef();
   const [content, setContent] = useState("");
 
+  //달력의 날짜를 클릭했을때 달력의 날짜를 받아오는 것 시작
+  const location = useLocation();
+  const selectedDateParam = new URLSearchParams(location.search).get(
+    "selectedDate"
+  );
+  const defaultDateValue = selectedDateParam || date;
+  /* 'selectedDate' URL 매개변수가 존재하고 진실인 경우 해당 값으로 설정되거나
+   'selectedDate' 매개변수가 아닌 경우 빈 문자열로 설정 */
+
+  const [calendarDate, calendarSetDate] = useState(defaultDateValue);
+
+  const onChangeCalendarDate = useCallback((e) => {
+    calendarSetDate(e.target.value);
+  }, []);
+
+  //달력의 날짜를 클릭했을때 달력의 날짜를 받아오는 것 끝
+
   const onChangeDate = useCallback((e) => {
     setDate(e.target.value);
   }, []);
@@ -159,12 +176,21 @@ function DiaryEditor({ isEdit, originData }) {
         <Section>
           <h4>오늘은 언제인가요?</h4>
           <DateDiv>
-            <DateInput
-              type="date"
-              value={date}
-              onChange={onChangeDate}
-              max={getStringDateToday}
-            />
+            {isEdit ? (
+              <DateInput
+                type="date"
+                value={date}
+                onChange={onChangeDate}
+                max={getStringDateToday}
+              />
+            ) : (
+              <DateInput
+                type="date"
+                value={calendarDate}
+                onChange={onChangeCalendarDate}
+                max={getStringDateToday}
+              />
+            )}
           </DateDiv>
         </Section>
         {/* 날짜 섹션 */}

@@ -115,13 +115,13 @@ function DiaryHome() {
       />
       <DiaryList diaryList={data} />
 
-      <NewButton
+      {/* <NewButton
         onClick={() => {
           navigate("/New");
         }}
       >
         <i class="fa-duotone fa-plus fa-lg"></i>
-      </NewButton>
+      </NewButton> */}
     </Wrapper>
   );
 }

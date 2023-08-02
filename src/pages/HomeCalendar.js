@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { styled } from "styled-components";
 import { NewButton } from "./DiaryHome";
 import { useNavigate } from "react-router-dom";
+import { DiaryStateContext } from "../App";
 import moment from "moment";
 
 const Wrapper = styled.div`
@@ -86,20 +87,48 @@ const CalendarBody = styled(Calendar)`
     background-color: rgba(178, 190, 195, 0.6);
   }
 `;
-
-const onClick = (value) => {
-  console.log(moment(value).format("YYYY-MM-DD"));
-};
+//styled--------------------------------------------------------
 
 function HomeCalendar() {
   const [value, onChange] = useState(new Date());
   const navigate = useNavigate();
+  const diaryList = useContext(DiaryStateContext);
 
   //현재 날짜 이후로 선택안되게 하기
   const isDateDisabled = (date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0); //날짜비교만 할수있게 시간을 전부 0으로 설정
     return date > today; // 날짜가 현재보다 많으면 true를 반환함
+  };
+
+  const onClick = (value) => {
+    const dateValues = diaryList.map((item) => item.date); //App의 데이터 배열중에 date만 배열형태로 불러옴
+    const formattedDates = dateValues.map((dateValue) => {
+      return moment(dateValue).format("YYYY-MM-DD");
+    });
+    //App의 date 데이터를 YYYY-MM-DD 형식으로 바꿈
+
+    const calendarValue = moment(value).format("YYYY-MM-DD");
+    const diaryListValue = formattedDates;
+
+    const matchedDate = diaryListValue.find((date) => date === calendarValue);
+    /* 클릭한 calendarValue와 diaryListValue를 비교한다*/
+
+    if (matchedDate) {
+      const matchedItem = diaryList.find(
+        (item) => moment(item.date).format("YYYY-MM-DD") === matchedDate
+      );
+      const matchedItemId = matchedItem?.id;
+      console.log(
+        `일치 date: ${matchedDate}, 일치한 아이템 id: ${matchedItemId}`
+      );
+      navigate(`/diary/${matchedItemId}`);
+    } else {
+      console.log("일치하는것이 없음");
+      navigate(`/New?selectedDate=${calendarValue}`);
+    }
+
+    /* matchedDate와  diaryList의 데이터가 일치하는지 확인하고 같다면 matchedItem에 넣어준다*/
   };
 
   return (
