@@ -103,7 +103,7 @@ function DiaryEditor({ isEdit, originData }) {
   );
   const defaultDateValue = selectedDateParam || date;
   /* 'selectedDate' URL 매개변수가 존재하고 진실인 경우 해당 값으로 설정되거나
-   'selectedDate' 매개변수가 아닌 경우 빈 문자열로 설정 */
+   'selectedDate' 매개변수가 아닌 경우 date(현재날짜)로 설정 */
 
   const [calendarDate, calendarSetDate] = useState(defaultDateValue);
 
@@ -142,7 +142,7 @@ function DiaryEditor({ isEdit, originData }) {
     }
 
     if (!isEdit) {
-      onCreate(date, content, emotion, weather); //onCreate에 각각의 데이터를 보내줌
+      onCreate(calendarDate, content, emotion, weather); //onCreate에 각각의 데이터를 보내줌
     } else {
       onEdit(originData.id, date, content, emotion, weather); //onEdit에 각각의 데이터를 보내줌
     }

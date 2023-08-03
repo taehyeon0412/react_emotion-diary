@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { styled } from "styled-components";
@@ -87,6 +87,11 @@ const CalendarBody = styled(Calendar)`
     background-color: rgba(178, 190, 195, 0.6);
   }
 `;
+
+const ImageDiv = styled.div`
+  width: 25px;
+  height: 25px;
+`;
 //styled--------------------------------------------------------
 
 function HomeCalendar() {
@@ -94,31 +99,32 @@ function HomeCalendar() {
   const navigate = useNavigate();
   const diaryList = useContext(DiaryStateContext);
 
-  //현재 날짜 이후로 선택안되게 하기
-  const isDateDisabled = (date) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); //날짜비교만 할수있게 시간을 전부 0으로 설정
-    return date > today; // 날짜가 현재보다 많으면 true를 반환함
+  //App의 date 데이터를 YYYY-MM-DD 형식으로 바꾸는 함수
+  const getFormatDate = (diaryList) => {
+    const dateValues = diaryList.map((item) => item.date); //App의 데이터 배열중에 date만 배열형태로 불러옴
+    return dateValues.map((dateValue) =>
+      moment(dateValue).format("YYYY-MM-DD")
+    );
   };
 
+  //App 날짜 데이터와 달력 날짜 비교 함수
+  const findMatchedDate = (diaryListValue, calendarValue) => {
+    return diaryListValue.find((date) => date === calendarValue);
+  };
+
+  //달력 클릭 함수
   const onClick = (value) => {
-    const dateValues = diaryList.map((item) => item.date); //App의 데이터 배열중에 date만 배열형태로 불러옴
-    const formattedDates = dateValues.map((dateValue) => {
-      return moment(dateValue).format("YYYY-MM-DD");
-    });
-    //App의 date 데이터를 YYYY-MM-DD 형식으로 바꿈
-
+    const diaryListValue = getFormatDate(diaryList);
     const calendarValue = moment(value).format("YYYY-MM-DD");
-    const diaryListValue = formattedDates;
 
-    const matchedDate = diaryListValue.find((date) => date === calendarValue);
-    /* 클릭한 calendarValue와 diaryListValue를 비교한다*/
+    const matchedDate = findMatchedDate(diaryListValue, calendarValue);
 
     if (matchedDate) {
       const matchedItem = diaryList.find(
         (item) => moment(item.date).format("YYYY-MM-DD") === matchedDate
       );
       const matchedItemId = matchedItem?.id;
+
       console.log(
         `일치 date: ${matchedDate}, 일치한 아이템 id: ${matchedItemId}`
       );
@@ -129,6 +135,45 @@ function HomeCalendar() {
     }
 
     /* matchedDate와  diaryList의 데이터가 일치하는지 확인하고 같다면 matchedItem에 넣어준다*/
+  };
+
+  const addContent = (value) => {
+    const contents = [];
+    const calendarValue = moment(value).format("YYYY-MM-DD");
+
+    // Check if diaryList contains an entry with the same date as calendarValue
+    const matchedItem = diaryList.find(
+      (item) => moment(item.date).format("YYYY-MM-DD") === calendarValue
+    );
+
+    if (matchedItem) {
+      const matchedItemEmotion = matchedItem.emotion; // Access the emotion value
+      contents.push(
+        <ImageDiv key={calendarValue}>
+          <img
+            src={
+              process.env.PUBLIC_URL + `assets/emotion${matchedItemEmotion}.png`
+            }
+            alt="Emotion Icon"
+            onError={(e) => {
+              e.target.onerror = null; // Prevent infinite loop
+              e.target.src =
+                process.env.PUBLIC_URL + "path/to/default-emotion-icon.png";
+            }}
+          />
+        </ImageDiv>
+      );
+    }
+
+    return contents;
+  };
+  //현재 날짜에 있는 일기의 이모티콘을 나오게함 (Calendar에 content로 추가)
+
+  //현재 날짜 이후로 선택안되게 하기
+  const isDateDisabled = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); //날짜비교만 할수있게 시간을 전부 0으로 설정
+    return date > today; // 날짜가 현재보다 많으면 true를 반환함
   };
 
   return (
@@ -142,6 +187,7 @@ function HomeCalendar() {
         showNeighboringMonth={false}
         tileDisabled={({ date }) => isDateDisabled(date)}
         onClickDay={onClick}
+        tileContent={addContent}
       />
 
       <NewButton
