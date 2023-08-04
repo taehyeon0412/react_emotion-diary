@@ -89,8 +89,23 @@ const CalendarBody = styled(Calendar)`
 `;
 
 const ImageDiv = styled.div`
-  width: 25px;
-  height: 25px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-height: 850px) {
+    width: 20px;
+    height: 20px;
+    margin-top: 7px;
+  }
 `;
 //styled--------------------------------------------------------
 
@@ -124,9 +139,10 @@ function HomeCalendar() {
         (item) => moment(item.date).format("YYYY-MM-DD") === matchedDate
       );
       const matchedItemId = matchedItem?.id;
+      const matchedItemEmotion = matchedItem?.emotion;
 
       console.log(
-        `일치 date: ${matchedDate}, 일치한 아이템 id: ${matchedItemId}`
+        `일치 date: ${matchedDate}, 일치한 아이템 id: ${matchedItemId}, 일치한 아이템 emotion:${matchedItemEmotion}`
       );
       navigate(`/diary/${matchedItemId}`);
     } else {
@@ -137,37 +153,36 @@ function HomeCalendar() {
     /* matchedDate와  diaryList의 데이터가 일치하는지 확인하고 같다면 matchedItem에 넣어준다*/
   };
 
-  const addContent = (value) => {
-    const contents = [];
-    const calendarValue = moment(value).format("YYYY-MM-DD");
-
-    // Check if diaryList contains an entry with the same date as calendarValue
-    const matchedItem = diaryList.find(
-      (item) => moment(item.date).format("YYYY-MM-DD") === calendarValue
-    );
-
-    if (matchedItem) {
-      const matchedItemEmotion = matchedItem.emotion; // Access the emotion value
-      contents.push(
-        <ImageDiv key={calendarValue}>
-          <img
-            src={
-              process.env.PUBLIC_URL + `assets/emotion${matchedItemEmotion}.png`
-            }
-            alt="Emotion Icon"
-            onError={(e) => {
-              e.target.onerror = null; // Prevent infinite loop
-              e.target.src =
-                process.env.PUBLIC_URL + "path/to/default-emotion-icon.png";
-            }}
-          />
-        </ImageDiv>
+  //달력날짜 = 일기날짜 일때 이모티콘 나오게 하는 함수
+  const tileContent = ({ date, view }) => {
+    if (view === "month") {
+      const formattedDate = moment(date).format("YYYY-MM-DD");
+      const matchedItem = diaryList.find(
+        (item) => moment(item.date).format("YYYY-MM-DD") === formattedDate
       );
+
+      if (matchedItem) {
+        const emotionNumber = matchedItem.emotion;
+        const emotionImagePath = `assets/emotion${emotionNumber}.png`;
+
+        return (
+          <ImageDiv>
+            <img
+              src={process.env.PUBLIC_URL + emotionImagePath}
+              alt={`Emotion-${formattedDate}`}
+            />
+          </ImageDiv>
+        );
+      }
     }
 
-    return contents;
+    return null;
   };
-  //현재 날짜에 있는 일기의 이모티콘을 나오게함 (Calendar에 content로 추가)
+
+  /*view === "month" 하는이유 :  달력은 "월", "주" 또는 "일"과 같은 다양한 보기를 가질 수 있어 
+  시간에 대한 다양한 수준의 세분성을 표시할 수 있다.
+   캘린더가 "월" 보기에 있을 때만 이모티콘이 나타가게 하기 위해서 if문을 써줌
+    */
 
   //현재 날짜 이후로 선택안되게 하기
   const isDateDisabled = (date) => {
@@ -187,7 +202,7 @@ function HomeCalendar() {
         showNeighboringMonth={false}
         tileDisabled={({ date }) => isDateDisabled(date)}
         onClickDay={onClick}
-        tileContent={addContent}
+        tileContent={tileContent}
       />
 
       <NewButton
