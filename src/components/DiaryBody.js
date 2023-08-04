@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(178, 190, 195, 1);
   justify-content: space-between;
+  align-items: center;
   background-color: rgba(178, 190, 195, 0.1);
   border-radius: 20px;
   margin-bottom: 10px;
@@ -43,6 +44,12 @@ const EmotionDiv = styled.div`
 
   @media (max-width: 500px) {
     min-width: 80px;
+    height: 60px;
+  }
+
+  @media (max-width: 300px) {
+    min-width: 60px;
+    height: 40px;
   }
 `;
 
@@ -56,11 +63,19 @@ const TextDivDate = styled.div`
   font-weight: 700;
   font-size: 25px;
   margin-bottom: 5px;
+
+  @media (max-width: 300px) {
+    font-size: 18px;
+  }
 `;
 
 const TextDivText = styled.div`
   font-size: 18px;
   padding-right: 10px;
+
+  @media (max-width: 300px) {
+    font-size: 15px;
+  }
 `;
 
 /* const EditDiv = styled.div`

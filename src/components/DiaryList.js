@@ -7,7 +7,16 @@ import MyButton from "./MyButton";
 import DiaryBody from "./DiaryBody";
 
 const Wrapper = styled.div`
+  height: 80vh;
   margin-top: 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Select = styled.select`
