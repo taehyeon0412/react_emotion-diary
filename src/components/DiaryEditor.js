@@ -255,3 +255,5 @@ function DiaryEditor({ isEdit, originData }) {
 }
 
 export default React.memo(DiaryEditor);
+
+//-해당 날짜에 일기가 있으면 input date에서 선택못하게 함
