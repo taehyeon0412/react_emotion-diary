@@ -257,3 +257,4 @@ function DiaryEditor({ isEdit, originData }) {
 export default React.memo(DiaryEditor);
 
 //-해당 날짜에 일기가 있으면 input date에서 선택못하게 함
+//뒤로가기 누르면 무조건 첫번째 페이지로 이동됨 고치기
