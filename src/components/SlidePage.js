@@ -41,9 +41,23 @@ export default () => {
     const path = window.location.pathname;
     const initialIndex = path === "/DiaryHome" ? 1 : 0;
     setActiveSlideIndex(initialIndex);
-    console.log("swiper 인덱스 번호 ", activeSlideIndex);
-    console.log(path);
   }, [handleSlideChange]);
+
+  //width를 측정해서 cssMode를 바꿔줌(swiper가 모바일에서 버벅이는 문제 해결)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+
+    window.addEventListener("resize", handleResize);
+    //브라우저의 창 크기가 변경될 때마다 handleResize 호출
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <StyledSwiper
@@ -55,6 +69,7 @@ export default () => {
       observer={true}
       onSlideChange={handleSlideChange}
       initialSlide={activeSlideIndex}
+      cssMode={isMobile}
     >
       <SwiperSlide>
         <HomeCalendar />
