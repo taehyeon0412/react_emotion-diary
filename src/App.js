@@ -137,10 +137,12 @@ function App() {
 
               <Route path="/diary/:id" element={<Diary />} />
 
-              <Route path="/DiaryHome" element={<DiaryHome />} />
+              {/* <Route path="/DiaryHome" element={<DiaryHome />} />
 
-              <Route path="/Calendar" element={<HomeCalendar />} />
+              <Route path="/Calendar" element={<HomeCalendar />} /> */}
 
+              <Route path="/DiaryHome" element={<Home />} />
+              <Route path="/Calendar" element={<Home />} />
               <Route path="/" element={<Home />} />
             </Routes>
           </Wrapper>
