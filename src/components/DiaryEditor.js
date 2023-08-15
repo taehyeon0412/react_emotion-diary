@@ -16,6 +16,7 @@ import EmotionItem from "./EmotionItem";
 import WeatherItem from "./WeatherItem";
 import { DiaryDispatchContext } from "../App";
 import DiaryModal from "./DiaryModal";
+import { DiaryStateContext } from "./../App";
 
 //Util
 import { getStringDate, getStringDateToday } from "../util/date";
@@ -95,6 +96,7 @@ function DiaryEditor({ isEdit, originData }) {
   const [weather, setWeather] = useState(1);
   const contentRef = useRef();
   const [content, setContent] = useState("");
+  const diaryList = useContext(DiaryStateContext);
 
   //달력의 날짜를 클릭했을때 달력의 날짜를 받아오는 것 시작
   const location = useLocation();
@@ -182,6 +184,7 @@ function DiaryEditor({ isEdit, originData }) {
                 value={date}
                 onChange={onChangeDate}
                 max={getStringDateToday}
+                disabled={true}
               />
             ) : (
               <DateInput
