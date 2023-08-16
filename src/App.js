@@ -8,6 +8,7 @@ import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 import Home from "./pages/Home";
+import StartPage from "./pages/StartPage";
 
 const Wrapper = styled.div`
   height: 95vh;
@@ -127,6 +128,7 @@ function App() {
       {/* 각각의 요소에 데이터 제공 */}
       <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
         <BrowserRouter>
+          <StartPage />
           <Wrapper>
             <Routes>
               <Route path="/new" element={<New />} />
