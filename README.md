@@ -45,21 +45,24 @@
 
 **2. New 페이지**  ****`/New`
 
+![Newpage](https://github.com/taehyeon0412/react_emotion-diary/assets/71374539/7ee99d38-026b-4bd2-90b3-d36c9ba13345)
+
 
 
 **3. Edit 페이지** `/edit/:id`
 
-
+![Editpage](https://github.com/taehyeon0412/react_emotion-diary/assets/71374539/edd24687-168e-476f-adad-3079138ae396)
 
 
 
 **4. Diary 페이지** `/diary/:id`
 
-
+![Diarypage](https://github.com/taehyeon0412/react_emotion-diary/assets/71374539/29a623e4-163f-406f-9bba-963758edad01)
 
 ## **📝 기능**
 
 > 일기를 쓰면 해당 날짜의 달력에 감정 표시 기능
-> 
+
+![해당날짜 감정표시](https://github.com/taehyeon0412/react_emotion-diary/assets/71374539/7d495ffc-f651-4efd-9b68-546e29f05ef2)
 
 
