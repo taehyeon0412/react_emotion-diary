@@ -39,25 +39,25 @@
 
 `/` , `/DiaryHome` , `/Calendar`
 
-![home.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/54070a27-b7f4-4fb5-a3d4-61b50cb76e95/home.gif)
+
 
 **2. New 페이지**  ****`/New`
 
-![Newpage.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/69749aad-a2a9-4b8e-bc07-e71a98f8f00f/Newpage.png)
+
 
 **3. Edit 페이지** `/edit/:id`
 
-![Editpage.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dfe8481e-8aeb-44c2-80f9-2f4207804287/Editpage.png)
 
-![EditDelete.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/89c33b06-3539-42af-b4e7-902925d48791/EditDelete.png)
+
+
 
 **4. Diary 페이지** `/diary/:id`
 
-![Diarypage.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2660b3c4-f945-46e1-a17d-523648832c51/Diarypage.png)
+
 
 ## **📝 기능**
 
 > 일기를 쓰면 해당 날짜의 달력에 감정 표시 기능
 > 
 
-![해당날짜 감정표시.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/69b2be82-5da6-4941-8e60-329ee66d127d/%ED%95%B4%EB%8B%B9%EB%82%A0%EC%A7%9C_%EA%B0%90%EC%A0%95%ED%91%9C%EC%8B%9C.png)
+
