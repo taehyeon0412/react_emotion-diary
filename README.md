@@ -39,6 +39,8 @@
 
 `/` , `/DiaryHome` , `/Calendar`
 
+![home](https://github.com/taehyeon0412/react_emotion-diary/assets/71374539/f5434352-b487-4097-b6ee-5c3a5800d343)
+
 
 
 **2. New 페이지**  ****`/New`
