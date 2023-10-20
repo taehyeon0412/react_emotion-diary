@@ -64,10 +64,10 @@
 > 일기를 쓰면 해당 날짜의 달력에 감정 표시 기능
 
 ![해당날짜 감정표시](https://github.com/taehyeon0412/react_emotion-diary/assets/71374539/7d495ffc-f651-4efd-9b68-546e29f05ef2)
-
-
-
-
+<br/>
+<br/>
+<br/>
+<br/>
 ## 💡 성장 경험
 
 ### 데이터의 효율적인 전달
