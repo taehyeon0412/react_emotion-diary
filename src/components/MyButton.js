@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 const Button = styled.button`
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 10px 20px 10px 20px;
   font-size: 18px;
   white-space: nowrap;

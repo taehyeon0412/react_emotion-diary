@@ -21,8 +21,10 @@ const Wrapper = styled.div`
 
 const Select = styled.select`
   border: 0;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: #ececec;
+  padding-left: 5px;
+  padding-right: 5px;
 
   cursor: pointer;
   font-family: "Nanum Pen Script";

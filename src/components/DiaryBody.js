@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(178, 190, 195, 0.1);
-  border-radius: 20px;
+  border-radius: 40px;
   margin-bottom: 10px;
 `;
 
@@ -22,7 +22,7 @@ const EmotionDiv = styled.div`
   cursor: pointer;
   min-width: 120px;
   height: 80px;
-  border-radius: 10px;
+  border-radius: 30px;
   display: flex;
   justify-content: center;
   background-color: ${({ emotion }) => {
