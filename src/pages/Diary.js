@@ -38,7 +38,7 @@ const EmotionWrapper = styled.div`
   justify-content: space-around;
   width: 200px;
   height: 200px;
-  border-radius: 10px;
+  border-radius: 60px;
 
   background-color: ${({ emotion }) => {
     if (emotion === 1) {

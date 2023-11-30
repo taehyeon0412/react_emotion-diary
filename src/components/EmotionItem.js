@@ -31,6 +31,11 @@ const EmotionItemDiv = styled.div`
     width: 50%;
     height: 100%;
     margin-bottom: 10px;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
   }
 
   span {

@@ -25,6 +25,8 @@ const EmotionDiv = styled.div`
   border-radius: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
+
   background-color: ${({ emotion }) => {
     if (emotion === 1) {
       return `#64c964`;
@@ -40,6 +42,7 @@ const EmotionDiv = styled.div`
   }};
   img {
     width: 50%;
+    height: 80%;
   }
 
   @media (max-width: 500px) {

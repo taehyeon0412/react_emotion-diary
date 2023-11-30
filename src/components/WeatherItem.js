@@ -36,6 +36,11 @@ const WeatherItemDiv = styled.div`
     width: 80%;
     height: 100%;
     /*  margin-bottom: 10px; */
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
   }
 
   span {
