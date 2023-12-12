@@ -17,11 +17,15 @@ const Wrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 650px) {
+    height: 70vh;
+  }
 `;
 
 const Select = styled.select`
   border: 0;
-  border-radius: 20px;
+  border-radius: 13px;
   background-color: #ececec;
   padding-left: 5px;
   padding-right: 5px;

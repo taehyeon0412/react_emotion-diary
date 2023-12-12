@@ -36,6 +36,10 @@ export const NewButton = styled.button`
     font-size: 40px;
     color: rgba(189, 195, 199, 1);
   }
+
+  @media (max-width: 650px) {
+    bottom: 0%;
+  }
 `;
 
 //styled-------------------------------------------------------

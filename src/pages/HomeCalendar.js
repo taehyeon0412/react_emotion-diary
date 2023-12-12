@@ -20,6 +20,10 @@ const Wrapper = styled.div`
   border-radius: 20px;
 
   background-color: #fdfaf9;
+
+  @media (max-width: 650px) {
+    height: 82vh;
+  }
 `;
 
 const CalendarBody = styled(Calendar)`
