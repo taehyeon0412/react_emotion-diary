@@ -60,6 +60,8 @@ a{
   text-decoration:none;
   color:inherit; //부모 색깔을 가져와서 링크를 눌러도 색깔이 변하지않음
 }
+
+
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -6,11 +6,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   overflow: hidden;
 
   font-family: "Nanum Pen Script", cursive;
   font-family: "Yeon Sung", cursive;
+}
+
+@media screen and (max-width: 650px) {
+  body {
+    display: flex;
+    align-items: flex-start;
+  }
 }
 
 #root {
@@ -18,4 +24,10 @@ body {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 30px;
   -webkit-tap-highlight-color: transparent;
+}
+
+@media screen and (max-width: 650px) {
+  #root {
+    margin-top: 15px;
+  }
 }

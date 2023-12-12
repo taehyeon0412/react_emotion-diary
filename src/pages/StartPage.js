@@ -33,6 +33,7 @@ const Wrapper = styled.div`
 
   @media (max-width: 650px) {
     width: 90vw;
+    height: 85vh;
   }
 `;
 
