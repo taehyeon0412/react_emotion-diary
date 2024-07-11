@@ -1,8 +1,7 @@
 ## **🛠사용 기술 및 라이브러리**
 
 - react-router-dom(useNavigate, useParams)
-- useContext,useReducer
-- useEffect,useState
+- Context API
 - styled-components(createGlobalStyle)
 - react-modal
 - font-fontawesome
